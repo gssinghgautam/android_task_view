@@ -6,6 +6,7 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.paging.PagingDataAdapter;
 import androidx.recyclerview.widget.DiffUtil;
+
 import com.example.myapplication.databinding.UserItemBinding;
 import com.example.myapplication.domain.model.User;
 import com.example.myapplication.presentation.main.components.UserViewHolder;
@@ -31,7 +32,7 @@ public class UserAdapter extends PagingDataAdapter<User, UserViewHolder> {
         holder.bind(user);
     }
 
-    private static final DiffUtil.ItemCallback<User> DIFF_CALLBACK = new DiffUtil.ItemCallback<User>() {
+    private static final DiffUtil.ItemCallback<User> DIFF_CALLBACK = new DiffUtil.ItemCallback<>() {
         @Override
         public boolean areItemsTheSame(@NonNull User oldItem, @NonNull User newItem) {
             return oldItem.getId().equals(newItem.getId());

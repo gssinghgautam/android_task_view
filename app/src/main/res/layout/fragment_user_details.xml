@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
@@ -14,33 +15,188 @@
 
     </data>
 
-    <RelativeLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:paddingStart="@dimen/_32dp"
+        android:paddingEnd="@dimen/_32dp">
 
-        <ImageView
+        <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/imageView"
-            android:layout_width="300dp"
-            android:layout_height="300dp"
-            android:layout_centerHorizontal="true"
-            app:profileImage="@{detailProfileImage}" />
+            android:layout_width="@dimen/_300dp"
+            android:layout_height="@dimen/_300dp"
+            android:layout_marginTop="@dimen/_30dp"
+            tools:src="@mipmap/ic_launcher"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:detailProfileImage="@{detailProfileImage}"
+            />
 
-        <RelativeLayout
+        <androidx.constraintlayout.widget.Barrier
+            android:id="@+id/barrier1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:barrierDirection="right"
+            app:constraint_referenced_ids="imageView" />
+
+        <androidx.constraintlayout.widget.Barrier
+            android:id="@+id/barrier2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:barrierDirection="bottom"
+            app:constraint_referenced_ids="imageView" />
+
+
+        <FrameLayout
             android:id="@+id/overlayLayout"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:background="@drawable/rect_shape">
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="-50dp"
+            android:layout_marginTop="-50dp"
+            android:background="@drawable/rect_shape"
+            app:layout_constraintStart_toStartOf="@id/barrier1"
+            app:layout_constraintTop_toTopOf="@id/barrier2">
 
-            <TextView
+            <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/overlayText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:text="10"
-                android:textColor="#FFFFFF"
-                android:textSize="20sp" />
+                android:layout_gravity="center"
+                android:textColor="#000000"
+                android:textSize="@dimen/_20sp"
+                android:text="@{user.age}"
+                tools:text="10" />
+        </FrameLayout>
 
-        </RelativeLayout>
+        <View
+            android:id="@+id/profileSeparator"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/_2dp"
+            android:layout_marginTop="@dimen/_16dp"
+            android:background="@color/black"
+            app:layout_constraintTop_toBottomOf="@id/overlayLayout" />
 
-    </RelativeLayout>
+        <Space
+            android:id="@+id/profileSpace"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/_4dp"
+            app:layout_constraintTop_toBottomOf="@id/profileSeparator" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/userEmail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_4dp"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_14sp"
+            android:textStyle="bold"
+            app:layout_constraintTop_toBottomOf="@id/profileSpace"
+            android:text="@{`Email ` + user.email}"
+            tools:text="Email: gina@gmail.com" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/userJoinedDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_8dp"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_14sp"
+            android:textStyle="bold"
+            app:layout_constraintTop_toBottomOf="@id/userEmail"
+            android:text="@{`Date Joined: ` + user.relativeTime}"
+            tools:text="Date Joined: 2 days ago" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/userDOB"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_8dp"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_14sp"
+            android:textStyle="bold"
+            app:layout_constraintTop_toBottomOf="@id/userJoinedDate"
+            android:text="@{`DOB: ` + user.dateOfBirth}" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/userPhone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_8dp"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_14sp"
+            android:textStyle="bold"
+            app:layout_constraintTop_toBottomOf="@id/userDOB"
+            android:text="@{`Phone: ` + user.phone}" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/userLocation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_16dp"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_16sp"
+            android:textStyle="bold"
+            app:layout_constraintTop_toBottomOf="@id/userPhone"
+            android:text="@string/location" />
+
+        <View
+            android:id="@+id/userDetailSeparator"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/_2dp"
+            android:layout_marginTop="@dimen/_16dp"
+            android:background="@color/black"
+            app:layout_constraintTop_toBottomOf="@id/userLocation" />
+
+        <Space
+            android:id="@+id/userDetailSpace"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/_4dp"
+            app:layout_constraintTop_toBottomOf="@id/userDetailSeparator" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/userCity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_8dp"
+            android:textSize="@dimen/_14sp"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            app:layout_constraintTop_toBottomOf="@id/userDetailSpace"
+            android:text="@{`City: ` + user.city}" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/userState"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:layout_marginTop="@dimen/_8dp"
+            android:textSize="@dimen/_14sp"
+            android:textStyle="bold"
+            app:layout_constraintTop_toBottomOf="@id/userCity"
+            android:text="@{`State: ` + user.state}" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/userCountry"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_8dp"
+            android:textSize="@dimen/_14sp"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            app:layout_constraintTop_toBottomOf="@id/userState"
+            android:text="@{`Country: ` + user.country}" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/userPostCode"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_8dp"
+            android:textSize="@dimen/_14sp"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            app:layout_constraintTop_toBottomOf="@id/userCountry"
+            android:text="@{`Postcode: ` + user.postcode}" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

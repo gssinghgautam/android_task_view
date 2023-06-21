@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:left="43dp"
-        android:top="43dp"
-        android:right="43dp"
-        android:bottom="43dp">
+        android:left="10dp"
+        android:top="10dp"
+        android:right="10dp"
+        android:bottom="10dp">
         <rotate android:fromDegrees="45">
             <shape>
                 <size
                     android:width="50dp"
                     android:height="50dp" />
                 <gradient
-                    android:startColor="#0fdcc9"
-                    android:endColor="#0fdcc9" />
+                    android:startColor="#FFEB3B"
+                    android:endColor="#FFEB3B" />
                 <stroke
                     android:width="5dp"
-                    android:color="#2DACA0" />
+                    android:color="#FF6F00" />
             </shape>
         </rotate>
     </item>

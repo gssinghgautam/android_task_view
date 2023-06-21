@@ -15,11 +15,14 @@ fun UserDTO.toUserEntity(): UserEntity {
         phone = phone,
         profile = picture.large,
         gender = gender,
-        address = "${location.street.number}, ${location.street.name}",
+        street = "${location.street.number}, ${location.street.name}",
+        city = location.city,
+        state = location.state,
         country = location.country,
-        latitude = location.coordinates.latitude,
-        longitude = location.coordinates.longitude,
+        postcode = location.postcode,
         registrationDate = registered.date,
+        dob = dob.date,
+        age = dob.age,
         page = 0
     )
 }
@@ -35,9 +38,20 @@ fun UserEntity.toUser(): User {
         phone = phone,
         profile = profile,
         gender = gender,
-        address = address,
-        country= country,
-        registrationDate = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", Locale.getDefault()).parse(registrationDate),
+        street = street,
+        city = city,
+        state = state,
+        country = country,
+        postcode = postcode,
+        age = "$age",
+        registrationDate = SimpleDateFormat(
+            "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'",
+            Locale.getDefault()
+        ).parse(registrationDate),
+        dob = SimpleDateFormat(
+            "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'",
+            Locale.getDefault()
+        ).parse(dob)
     )
 }
 

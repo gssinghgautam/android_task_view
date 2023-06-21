@@ -26,8 +26,10 @@ public class UserViewHolder extends RecyclerView.ViewHolder {
     }
 
     public void bind(User user) {
-        binding.setUser(user);
-        binding.setImageUrl(user.getProfile());
+        if (user != null) {
+            binding.setUser(user);
+            binding.setImageUrl(user.getProfile());
+        }
         binding.executePendingBindings();
     }
 }

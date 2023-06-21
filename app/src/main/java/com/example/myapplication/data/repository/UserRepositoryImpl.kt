@@ -2,7 +2,6 @@ package com.example.myapplication.data.repository
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.map
 import androidx.lifecycle.switchMap
 import androidx.paging.Pager
 import androidx.paging.PagingData
@@ -20,7 +19,7 @@ class UserRepositoryImpl @Inject constructor(
 ) : UserRepository {
 
     override fun getUsers(): LiveData<PagingData<User>> {
-        return pager.liveData.switchMap { it->
+        return pager.liveData.switchMap {
             MutableLiveData(it.map { entity -> entity.toUser() })
         }
     }

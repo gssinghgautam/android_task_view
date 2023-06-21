@@ -5,4 +5,8 @@
     <string name="first_fragment_label">User List</string>
     <string name="second_fragment_label">User Details</string>
     <string name="user_image">user image</string>
+    <string name="location">LOCATION</string>
+    <string name="retry">Retry</string>
+    <string name="no_internet_available">No Internet Available</string>
+    <string name="label_error">Something went wrong, please try again</string>
 </resources>

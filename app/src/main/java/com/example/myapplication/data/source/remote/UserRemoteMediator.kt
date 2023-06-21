@@ -3,15 +3,14 @@
 package com.example.myapplication.data.source.remote
 
 import androidx.paging.ExperimentalPagingApi
-import androidx.paging.RemoteMediator
-import com.example.myapplication.data.source.local.database.UserDatabase
-import com.example.myapplication.data.source.local.entity.UserEntity
 import androidx.paging.LoadType
 import androidx.paging.PagingState
+import androidx.paging.RemoteMediator
 import androidx.room.withTransaction
+import com.example.myapplication.data.source.local.database.UserDatabase
 import com.example.myapplication.data.source.local.entity.RemoteKeysEntity
+import com.example.myapplication.data.source.local.entity.UserEntity
 import com.example.myapplication.data.source.toUserEntities
-import kotlinx.coroutines.delay
 import retrofit2.HttpException
 import java.io.IOException
 import java.util.concurrent.TimeUnit
@@ -104,7 +103,7 @@ class UserRemoteMediator(
         try {
             val apiResponse = remoteDataSource.getUsers(page = page, results = 20)
 
-            delay(1000L) //TODO For testing only!
+            //delay(1000L) //TODO For testing only!
 
             val users = apiResponse.results
             val endOfPaginationReached = users.isEmpty()

@@ -16,6 +16,7 @@ public class UserFragmentViewModel extends ViewModel {
 
     private final UserRepository repository;
 
+
     @Inject
     public UserFragmentViewModel(UserRepository repository) {
         this.repository = repository;
