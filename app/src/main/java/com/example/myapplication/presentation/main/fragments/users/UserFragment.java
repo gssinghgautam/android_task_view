@@ -23,6 +23,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.myapplication.R;
+import com.example.myapplication.databinding.ContentErrorBinding;
 import com.example.myapplication.databinding.FragmentUserBinding;
 import com.example.myapplication.presentation.main.adapter.UserAdapter;
 
@@ -48,16 +49,17 @@ public class UserFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         NavController navController = Navigation.findNavController(view);
         setupUI(view.getContext());
+        ContentErrorBinding errorLayout = binding.errorLayout;
 
         userAdapter.addLoadStateListener(loadStates -> {
             binding.progressBar.setVisibility(loadStates.getRefresh() instanceof LoadState.Loading ? View.VISIBLE : View.GONE);
-            binding.errorView.setVisibility(loadStates.getRefresh() instanceof LoadState.Error ? View.VISIBLE : View.GONE);
+            errorLayout.errorView.setVisibility(loadStates.getRefresh() instanceof LoadState.Error ? View.VISIBLE : View.GONE);
 
             binding.recyclerView.setVisibility(loadStates.getRefresh() instanceof LoadState.Error ? View.GONE : View.VISIBLE);
 
             if (loadStates.getRefresh() instanceof LoadState.Error) {
                 String errorMessage = ((LoadState.Error) loadStates.getRefresh()).getError().getLocalizedMessage();
-                binding.txtErrorMessage.setText(simplifyErrorMessage(errorMessage));
+                errorLayout.txtErrorMessage.setText(simplifyErrorMessage(errorMessage));
             }
 
             return null;
@@ -72,7 +74,7 @@ public class UserFragment extends Fragment {
             userAdapter.submitData(getLifecycle(), userEntityPagingData);
         });
 
-        binding.retryButton.setOnClickListener(v -> userAdapter.retry());
+        binding.errorLayout.retryButton.setOnClickListener(v -> userAdapter.retry());
 
     }
 

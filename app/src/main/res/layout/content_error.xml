@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/errorView"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:visibility="gone"
+    tools:visibility="visible">
+
+    <ImageView
+        android:id="@+id/errorImageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/wifi"
+        tools:ignore="ContentDescription" />
+
+    <Space
+        android:id="@+id/blankSpace1"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/_16dp"
+        android:layout_below="@+id/errorImageView" />
+
+    <TextView
+        android:id="@+id/txtErrorMessage"
+        android:layout_width="@dimen/_300dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/blankSpace1"
+        android:textAlignment="center"
+        android:textSize="@dimen/_14sp"
+        tools:text="@string/no_internet_available" />
+
+    <Space
+        android:id="@+id/blankSpace2"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/_16dp"
+        android:layout_below="@id/txtErrorMessage" />
+
+    <Button
+        android:id="@+id/retry_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/blankSpace2"
+        android:layout_centerHorizontal="true"
+        android:text="@string/retry" />
+</RelativeLayout>
