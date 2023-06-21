@@ -70,9 +70,7 @@ public class UserFragment extends Fragment {
             navController.navigate(action);
         });
 
-        viewModel.getUsers().observe(getViewLifecycleOwner(), userEntityPagingData -> {
-            userAdapter.submitData(getLifecycle(), userEntityPagingData);
-        });
+        viewModel.getUsers().observe(getViewLifecycleOwner(), userEntityPagingData -> userAdapter.submitData(getLifecycle(), userEntityPagingData));
 
         binding.errorLayout.retryButton.setOnClickListener(v -> userAdapter.retry());
 
